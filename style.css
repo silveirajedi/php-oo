@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Open+sans|Source+Code+Pro');
+
+:root {
+    --line: #343a44;
+    --green: #35ba9b;
+    --blue: #3aadd9;
+    --yellow: #f5b945;
+    --red: #d94452;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.corpo {
+    font-family: "Source Code Pro", serif;
+    padding: 20px 20px 50px 20px;
+    overflow-x: hidden;
+    color: #333333;
+}
+
+.menu {
+    font-family: "Source Code Pro", serif;
+    list-style:none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #565c67;
+    padding: 10px;
+}
+
+.menu li {
+    display: inline;
+}
+
+.menu a {
+    padding: 8px;
+}
+
+.menu a:hover {
+    background-color: #111;
+}
+
+
+a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0;
+    padding: 5px;
+    border: 2px solid var(--line);
+}
+
+p {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.line {
+    display: block;
+    padding: 10px;
+    margin: 30px 0;
+    background-color: var(--line);
+    color: white;
+}
+
+.trigger.error {
+    color: var(--red);
+    border-color: var(--red);
+}
