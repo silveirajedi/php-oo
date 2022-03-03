@@ -29,7 +29,7 @@ mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 ```
 ### Glossário:
 
-- 
+- 001 - Classes, Propriedades e Objetos
 
 ### Exemplos:
 
