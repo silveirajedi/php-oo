@@ -2,10 +2,14 @@
 
 namespace classes;
 
+/**
+ *
+ */
+
 class Users
 {
-    public $firstname;
-    public $lastname;
+    public $firstName;
+    public $lastName;
     private $email;
 
     /**
@@ -13,7 +17,7 @@ class Users
      */
     public function getFirstname()
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     /**
@@ -21,7 +25,7 @@ class Users
      */
     public function setFirstname($firstname): void
     {
-        $this->firstname = $firstname;
+        $this->firstName = $firstname;
     }
 
     /**
@@ -29,7 +33,7 @@ class Users
      */
     public function getLastname()
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
     /**
@@ -37,7 +41,7 @@ class Users
      */
     public function setLastname($lastname): void
     {
-        $this->lastname = $lastname;
+        $this->lastName = filter_var($lastname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     }
 
     /**

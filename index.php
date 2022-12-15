@@ -36,17 +36,17 @@ var_dump($user);
 
 echo "<h1>Propriedades</h1>";
 
-$user->firstname = "Leandro";
-$user->lastname = "Silveira";
+$user->firstName = "Leandro";
+$user->lastName = "Silveira";
 
-echo "<p>Seu nome é {$user->firstname} {$user->lastname}</p>";
+echo "<p>Seu nome é {$user->firstName} {$user->lastName}</p>";
 
 var_dump($user);
 
 echo "<h1>Métodos</h1>";
 
 $user->setFirstname("José");
-$user->setLastname("Silva");
+$user->setLastname("<script>Silva</script>");
 
 if (!$user->setEmail("leandro@email.com.br")){
     echo "<p class='trigger error'>E-mail {$user->getEmail()} é inválido</p>";
