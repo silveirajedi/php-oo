@@ -55,8 +55,21 @@ if (!$user->setEmail("leandro@email.com.br")){
 var_dump($user);
 
 echo "<div id='002'></div>";
-echo "<div class='line'>002 - </div>";
+echo "<div class='line'>002 - Encapsulamento</div>";
 
+echo "<h1>Visibilidade e Manupilação</h1>";
+
+$leandro = $user->setUser(
+    "Leandro",
+    "Silveira",
+    "contato@"
+);
+
+if (!$leandro) {
+    echo "<p class='trigger error'>{$user->getError()}</p>";
+}
+
+var_dump($user);
 
 
 echo "</div>";

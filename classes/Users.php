@@ -11,6 +11,46 @@ class Users
     public $firstName;
     public $lastName;
     private $email;
+    private $document;
+
+    private $error;
+
+    /**
+     * @return mixed
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    public function setUser($firstName, $lastName, $email)
+    {
+        $this->setFirstname($firstName);
+        $this->setLastname($lastName);
+
+        if (!$this->setEmail($email)) {
+            $this->error = "O e-mail {$this->getEmail()} não é válido!";
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
+
+    /**
+     * @param mixed $document
+     */
+    private function setDocument($document): void
+    {
+        $this->document = $document;
+    }
 
     /**
      * @return mixed
