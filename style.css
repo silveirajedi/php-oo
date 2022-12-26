@@ -71,3 +71,13 @@ p {
     color: var(--red);
     border-color: var(--red);
 }
+
+.trigger.warning {
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+.trigger.success {
+    color: var(--green);
+    border-color: var(--green);
+}
