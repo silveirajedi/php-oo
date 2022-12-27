@@ -17,6 +17,7 @@ $template = <<<TPL
         <li><a href="#001">001</a></li>
         <li><a href="#002">002</a></li>
         <li><a href="#003">003</a></li>
+        <li><a href="#004">004</a></li>
     </ul>
 TPL;
 
@@ -73,7 +74,7 @@ if (!$leandro) {
 var_dump($user);
 
 echo "<div id='003'></div>";
-echo "<div class='line'>003 - Operações</div>";
+echo "<div class='line'>003 - Operações (Métodos Mágicos)</div>";
 
 echo "<h1>__construct</h1>";
 
@@ -124,10 +125,68 @@ echo $produtos;
 
 echo "<h1>__unset</h1>";
 
-unset(
-    $produtos->name,
-    $produtos->price);
+//unset(
+//    $produtos->name,
+//    $produtos->price);
 
 var_dump($produtos);
+
+echo "<div id='004'></div>";
+echo "<div class='line'>004 - Relacionamento entre Objetos</div>";
+
+require __DIR__ . "/classes/Company.php";
+require __DIR__ . "/classes/CompanyAddress.php";
+require __DIR__ . "/classes/CompanyProduct.php";
+require __DIR__ . "/classes/CompanyUser.php";
+use classes\Company;
+use classes\CompanyAddress;
+use classes\CompanyProduct;
+use classes\CompanyUser;
+
+echo "<h1>Associação</h1>";
+
+$company = new Company();
+$company->bootCompany("Fratelli", "Rua Teste, 222");
+
+$company->boot(
+    "Fratelli",
+    new CompanyAddress("Rua teste", 111, "Casa"),
+);
+
+var_dump($company);
+
+echo "<p>A empresa {$company->getCompany()} está situada no endereço {$company->getAddress()->getStreet()}, {$company->getAddress()->getNumber()}, {$company->getAddress()->getComplement()}</p>";
+
+echo "<h1>Agregação</h1>";
+
+$productA = new CompanyProduct("Banana", 199);
+$productB = new CompanyProduct("Maçã", 299);
+
+var_dump(
+    $productA,
+    $productB
+);
+
+$company->addProduct($productA);
+$company->addProduct($productB);
+
+var_dump($company);
+
+/** @var CompanyProduct $product */
+foreach ($company->getProducts() as $product) {
+    echo "<p>{$product->getName()} por R$ {$product->getPrice()}</p>";
+}
+
+echo "<h1>Composição</h1>";
+
+$company->addTeamMember("Developer", "Leandro", "Silveira");
+$company->addTeamMember("Owner", "Caroline", "Lazaro");
+
+var_dump($company);
+
+/** @var CompanyUser $team */
+foreach ($company->getTeam() as $team) {
+    echo "<p>O funcionário {$team->getFirstName()} {$team->getLastName()} que trabalha como {$team->getJob()} foi demitido</p>";
+}
 
 echo "</div>";
