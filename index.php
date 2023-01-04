@@ -18,6 +18,7 @@ $template = <<<TPL
         <li><a href="#002">002</a></li>
         <li><a href="#003">003</a></li>
         <li><a href="#004">004</a></li>
+        <li><a href="#005">005</a></li>
     </ul>
 TPL;
 
@@ -188,5 +189,71 @@ var_dump($company);
 foreach ($company->getTeam() as $team) {
     echo "<p>O funcionário {$team->getFirstName()} {$team->getLastName()} que trabalha como {$team->getJob()} foi demitido</p>";
 }
+
+echo "<div id='005'></div>";
+echo "<div class='line'>005 - Herança e Polimorfismo</div>";
+
+require __DIR__ . "/classes/Inheritance/Event/Event.php";
+require __DIR__ . "/classes/Inheritance/Event/EventLive.php";
+require __DIR__ . "/classes/Inheritance/Event/EventOnline.php";
+require __DIR__ . "/classes/Inheritance/AddressEvent.php";
+use classes\Inheritance\Event;
+use classes\Inheritance\Event\EventLive;
+use classe\Inheritance\AddressEvent;
+use classes\Inheritance\Event\EventOnline;
+
+echo "<h1>Classe Pai</h1>";
+
+$event = new Event\Event(
+    "Workshop",
+    new DateTime("2023-01-01 18:00"),
+    999,
+    "4"
+);
+
+var_dump($event);
+
+$event->register("Leandro Silveira", "leandro@email.com.br");
+$event->register("Caroline Silveira", "carol@email.com.br");
+$event->register("José da Silveira", "jose@email.com.br");
+$event->register("Valdir Silveira", "valdir@email.com.br");
+$event->register("Marcia Silveira", "marcia@email.com.br");
+
+echo "<h1>Classe Filha</h1>";
+
+$address = new AddressEvent("Rua Qualquer", 111, "Apartamento");
+$event = new EventLive(
+    "Workshop",
+    new DateTime("2023-01-01 18:00"),
+    999,
+    "4",
+    $address
+);
+
+var_dump($event);
+
+$event->register("Leandro Silveira", "leandro@email.com.br");
+$event->register("Caroline Silveira", "carol@email.com.br");
+$event->register("José da Silveira", "jose@email.com.br");
+$event->register("Valdir Silveira", "valdir@email.com.br");
+$event->register("Marcia Silveira", "marcia@email.com.br");
+
+
+echo "<h1>Polimorfismo</h1>";
+
+$event = new EventOnline(
+    "Workshop",
+    new DateTime("2023-01-01 18:00"),
+    199,
+    "https://www.fratelliti.com.br"
+);
+
+var_dump($event);
+
+$event->register("Leandro Silveira", "leandro@email.com.br");
+$event->register("Caroline Silveira", "carol@email.com.br");
+$event->register("José da Silveira", "jose@email.com.br");
+$event->register("Valdir Silveira", "valdir@email.com.br");
+$event->register("Marcia Silveira", "marcia@email.com.br");
 
 echo "</div>";
