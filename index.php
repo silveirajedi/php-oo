@@ -19,6 +19,7 @@ $template = <<<TPL
         <li><a href="#003">003</a></li>
         <li><a href="#004">004</a></li>
         <li><a href="#005">005</a></li>
+        <li><a href="#006">006</a></li>
     </ul>
 TPL;
 
@@ -255,5 +256,63 @@ $event->register("Caroline Silveira", "carol@email.com.br");
 $event->register("José da Silveira", "jose@email.com.br");
 $event->register("Valdir Silveira", "valdir@email.com.br");
 $event->register("Marcia Silveira", "marcia@email.com.br");
+
+echo "<div id='006'></div>";
+echo "<div class='line'>006 - Membros de uma classe</div>";
+
+require __DIR__ . "/classes/Members/Config.php";
+require __DIR__ . "/classes/Members/Trigger.php";
+use classes\Members\Config;
+use classes\Members\Trigger;
+
+echo "<h1>Constantes</h1>";
+
+$config = new Config();
+echo "</p>". $config::COMPANY ."</p>";
+
+var_dump(
+    $config::COMPANY,
+//    $config::DOMAIN,
+//    $config::SECTOR
+);
+
+$reflexion = new ReflectionClass(Config::class);
+
+var_dump($config, $reflexion->getConstants());
+
+echo "<h1>Propriedades</h1>";
+
+Config::$company = "Fratelli";
+Config::$domain = "fratelliti.com.br";
+Config::$sector = "Desenvolvimento";
+
+$config::$sector = "TI";
+
+var_dump($config, $reflexion->getProperties(), $reflexion->getStaticProperties());
+
+echo "<h1>Métodos</h1>";
+
+$config::setConfig("", "", "");
+$config::setConfig("Fratelli", "fratelliti.com.br", "Tecnologia");
+
+var_dump($config, $reflexion->getMethods(), $reflexion->getStaticProperties());
+
+echo "<h1>EXEMPLO</h1>";
+
+$trigger = new Trigger();
+$trigger::show("Teste de mensagem");
+
+var_dump($trigger);
+
+Trigger::show("Teste de mensagem 2");
+Trigger::show("Sucesso!", Trigger::SUCCESS);
+Trigger::show("Erro!", Trigger::ERROR);
+Trigger::show("Aviso!", Trigger::WARNING);
+
+echo Trigger::push("Teste de mensagem push");
+echo Trigger::push("Teste de mensagem push", Trigger::SUCCESS);
+echo Trigger::push("Teste de mensagem push", Trigger::ERROR);
+echo Trigger::push("Teste de mensagem push", Trigger::WARNING);
+
 
 echo "</div>";
