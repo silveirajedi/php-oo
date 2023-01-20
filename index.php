@@ -20,6 +20,7 @@ $template = <<<TPL
         <li><a href="#004">004</a></li>
         <li><a href="#005">005</a></li>
         <li><a href="#006">006</a></li>
+        <li><a href="#007">007</a></li>
     </ul>
 TPL;
 
@@ -313,6 +314,69 @@ echo Trigger::push("Teste de mensagem push");
 echo Trigger::push("Teste de mensagem push", Trigger::SUCCESS);
 echo Trigger::push("Teste de mensagem push", Trigger::ERROR);
 echo Trigger::push("Teste de mensagem push", Trigger::WARNING);
+
+echo "<div id='007'></div>";
+echo "<div class='line'>007 - Fundamentos da abastração</div>";
+
+require __DIR__ . "/classes/App/TriggerApp.php";
+require __DIR__ . "/classes/App/UserApp.php";
+require __DIR__ . "/classes/Bank/Account.php";
+require __DIR__ . "/classes/Bank/AccountSaving.php";
+require __DIR__ . "/classes/Bank/AccountCurrent.php";
+use classes\App\TriggerApp;
+use classes\App\UserApp;
+use classes\Bank\Account;
+use classes\Bank\AccountSaving;
+use classes\Bank\AccountCurrent;
+
+echo "<h1>superclass</h1>";
+
+$client = new UserApp("Leandro", "Silveira");
+//$account = new Account(
+//    1600,
+//    22345,
+//    $client,
+//    1000
+//);
+
+var_dump($client);
+
+
+echo "<h1>Especialização 1</h1>";
+
+$saving = new AccountSaving(
+    "1122",
+    "123456",
+    $client,
+    "0"
+);
+
+var_dump($saving);
+
+$saving->deposit(1000);
+$saving->withdrawal(1500);
+$saving->withdrawal(1000);
+$saving->withdrawal(6);
+$saving->extract();
+
+echo "<h1>Especialização 2</h1>";
+
+$current = new AccountCurrent(
+  "1171",
+  "101010-1",
+    $client,
+    100,
+    200
+);
+
+$current->deposit(200);
+$current->withdrawal(600);
+$current->withdrawal(400);
+$current->withdrawal(99,40);
+
+$current->extract();
+
+var_dump($current);
 
 
 echo "</div>";

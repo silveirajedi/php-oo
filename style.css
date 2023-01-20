@@ -73,8 +73,8 @@ p {
 }
 
 .trigger.warning {
-    color: var(--blue);
-    border-color: var(--blue);
+    color: var(--yellow);
+    border-color: var(--yellow);
 }
 
 .trigger.success {
