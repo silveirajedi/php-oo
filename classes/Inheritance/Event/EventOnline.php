@@ -1,6 +1,6 @@
 <?php
 
-namespace classes\Inheritance\Event;
+namespace Classes\Inheritance\Event;
 
 class EventOnline extends Event
 {

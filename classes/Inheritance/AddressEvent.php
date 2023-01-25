@@ -1,6 +1,6 @@
 <?php
 
-namespace classe\Inheritance;
+namespace Classes\Inheritance;
 
 class AddressEvent
 {

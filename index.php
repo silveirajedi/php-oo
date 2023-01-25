@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/vendor/autoload.php";
+
 header("Content-Type: text/html; charset=utf-8");
 
 date_default_timezone_set("America/Sao_Paulo");
@@ -21,6 +23,7 @@ $template = <<<TPL
         <li><a href="#005">005</a></li>
         <li><a href="#006">006</a></li>
         <li><a href="#007">007</a></li>
+        <li><a href="#008">008</a></li>
     </ul>
 TPL;
 
@@ -33,8 +36,7 @@ echo "<div class='line'>001 - Classes, Propriedades e Métodos</div>";
 
 echo "<h1>Classes</h1>";
 
-require __DIR__ . "/classes/Users.php";
-use classes\Users;
+use Classes\Users;
 
 $user = new Users();
 var_dump($user);
@@ -81,8 +83,7 @@ echo "<div class='line'>003 - Operações (Métodos Mágicos)</div>";
 
 echo "<h1>__construct</h1>";
 
-require __DIR__ . "/classes/Address.php";
-use classes\Address;
+use Classes\Address;
 
 $address = new Address("Serra Negra", 275, "Jardim dos Macucos");
 
@@ -97,8 +98,7 @@ var_dump($endereco1, $endereco2);
 
 echo "<h1>__set</h1>";
 
-require __DIR__ . "/classes/Product.php";
-use classes\Product;
+use Classes\Product;
 
 $produtos = new Product();
 $produtos->handler("Banana", 19.80);
@@ -137,14 +137,11 @@ var_dump($produtos);
 echo "<div id='004'></div>";
 echo "<div class='line'>004 - Relacionamento entre Objetos</div>";
 
-require __DIR__ . "/classes/Company.php";
-require __DIR__ . "/classes/CompanyAddress.php";
-require __DIR__ . "/classes/CompanyProduct.php";
-require __DIR__ . "/classes/CompanyUser.php";
-use classes\Company;
-use classes\CompanyAddress;
-use classes\CompanyProduct;
-use classes\CompanyUser;
+
+use Classes\Company;
+use Classes\CompanyAddress;
+use Classes\CompanyProduct;
+use Classes\CompanyUser;
 
 echo "<h1>Associação</h1>";
 
@@ -195,14 +192,10 @@ foreach ($company->getTeam() as $team) {
 echo "<div id='005'></div>";
 echo "<div class='line'>005 - Herança e Polimorfismo</div>";
 
-require __DIR__ . "/classes/Inheritance/Event/Event.php";
-require __DIR__ . "/classes/Inheritance/Event/EventLive.php";
-require __DIR__ . "/classes/Inheritance/Event/EventOnline.php";
-require __DIR__ . "/classes/Inheritance/AddressEvent.php";
-use classes\Inheritance\Event;
-use classes\Inheritance\Event\EventLive;
-use classe\Inheritance\AddressEvent;
-use classes\Inheritance\Event\EventOnline;
+use Classes\Inheritance\Event;
+use Classes\Inheritance\Event\EventLive;
+use Classes\Inheritance\AddressEvent;
+use Classes\Inheritance\Event\EventOnline;
 
 echo "<h1>Classe Pai</h1>";
 
@@ -261,10 +254,8 @@ $event->register("Marcia Silveira", "marcia@email.com.br");
 echo "<div id='006'></div>";
 echo "<div class='line'>006 - Membros de uma classe</div>";
 
-require __DIR__ . "/classes/Members/Config.php";
-require __DIR__ . "/classes/Members/Trigger.php";
-use classes\Members\Config;
-use classes\Members\Trigger;
+use Classes\Members\Config;
+use Classes\Members\Trigger;
 
 echo "<h1>Constantes</h1>";
 
@@ -318,16 +309,11 @@ echo Trigger::push("Teste de mensagem push", Trigger::WARNING);
 echo "<div id='007'></div>";
 echo "<div class='line'>007 - Fundamentos da abastração</div>";
 
-require __DIR__ . "/classes/App/TriggerApp.php";
-require __DIR__ . "/classes/App/UserApp.php";
-require __DIR__ . "/classes/Bank/Account.php";
-require __DIR__ . "/classes/Bank/AccountSaving.php";
-require __DIR__ . "/classes/Bank/AccountCurrent.php";
-use classes\App\TriggerApp;
-use classes\App\UserApp;
-use classes\Bank\Account;
-use classes\Bank\AccountSaving;
-use classes\Bank\AccountCurrent;
+use Classes\App\TriggerApp;
+use Classes\App\UserApp;
+use Classes\Bank\Account;
+use Classes\Bank\AccountSaving;
+use Classes\Bank\AccountCurrent;
 
 echo "<h1>superclass</h1>";
 
@@ -378,5 +364,42 @@ $current->extract();
 
 var_dump($current);
 
+echo "<div id='008'></div>";
+echo "<div class='line'>008 - Contratos com interfaces</div>";
+
+use Classes\Contracts\UserContracts;
+
+echo "<h1>implementação</h1>";
+
+$user = new UserContracts("Caroline", "Silveira", "carol@fratelliti.com.br");
+
+$admin = new \Classes\Contracts\UserAdminContracts(
+    "Leandro",
+    "Silveira",
+    "contato@fratelliti.com.br"
+);
+
+var_dump($user, $admin);
+
+
+echo "<h1>associação</h1>";
+
+$login = new \Classes\Contracts\Login();
+
+$loginUser = $login->loginUser($user);
+$loginAdmin = $login->loginAdmin($admin);
+
+
+var_dump($loginUser, $loginAdmin);
+
+
+echo "<h1>dependência</h1>";
+
+var_dump(
+    $login->login($user),
+    $login->login($admin),
+    $login->login($admin)->getFirstName(),
+    $login->login($user)->getEmail()
+);
 
 echo "</div>";

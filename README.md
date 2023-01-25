@@ -27,6 +27,20 @@ echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20210902/xde
 ```bash
 mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 ```
+
+- Instalar o Composer
+
+```bash
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php && rm composer-setup.php && mv composer.phar /usr/local/bin/composer && chmod a+x /usr/local/bin/composer
+```
+
+- Atualizar Composer
+
+```bash
+composer update
+```
+
+
 ### Glossário:
 
 - 001 - Classes, Propriedades e Objetos

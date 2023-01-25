@@ -1,9 +1,9 @@
 <?php
 
-namespace classes\Bank;
+namespace Classes\Bank;
 
-use classes\App\TriggerApp;
-use classes\App\UserApp;
+use Classes\App\TriggerApp;
+use Classes\App\UserApp;
 
 abstract class Account
 {

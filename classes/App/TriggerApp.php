@@ -1,6 +1,6 @@
 <?php
 
-namespace classes\App;
+namespace Classes\App;
 
 class TriggerApp
 {

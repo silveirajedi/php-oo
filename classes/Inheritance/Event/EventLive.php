@@ -1,8 +1,8 @@
 <?php
 
-namespace classes\Inheritance\Event;
+namespace Classes\Inheritance\Event;
 
-use classe\Inheritance\AddressEvent;
+use Classes\Inheritance\AddressEvent;
 
 class EventLive extends Event
 {

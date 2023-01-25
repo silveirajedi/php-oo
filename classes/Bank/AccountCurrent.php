@@ -2,8 +2,8 @@
 
 namespace classes\Bank;
 
-use classes\App\TriggerApp;
-use classes\App\UserApp;
+use Classes\App\TriggerApp;
+use Classes\App\UserApp;
 
 class AccountCurrent extends Account
 {
