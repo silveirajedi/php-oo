@@ -24,6 +24,7 @@ $template = <<<TPL
         <li><a href="#006">006</a></li>
         <li><a href="#007">007</a></li>
         <li><a href="#008">008</a></li>
+        <li><a href="#009">009</a></li>
     </ul>
 TPL;
 
@@ -402,4 +403,35 @@ var_dump(
     $login->login($user)->getEmail()
 );
 
+echo "<div id='009'></div>";
+echo "<div class='line'>009 - Traits</div>";
+
+$userT = new \Classes\Traits\User("Leandro", "Silveira", "teste@teste.com.br");
+$addressT = new \Classes\Traits\Address("Rua Teste", "111", "casa");
+
+$register = new \Classes\Traits\Register(
+    $userT,
+    $addressT
+);
+
+var_dump(
+    $register,
+    $register->getUser(),
+    $register->getAdreess(),
+    $register->getUser()->getFistName(),
+    $register->getAdreess()->getStreet()
+);
+$cart = new \Classes\Traits\Cart();
+$cart->add(1, "Banana", "10", "10");
+$cart->add(2, "Maçã", "5", "12");
+$cart->add(3, "Mamão", "2", "4");
+$cart->remove(1, 11);
+
+$cart->checkout($userT, $addressT);
+
+var_dump($cart);
+
 echo "</div>";
+
+
+
