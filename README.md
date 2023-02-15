@@ -44,10 +44,14 @@ composer update
 ### Glossário:
 
 - 001 - Classes, Propriedades e Objetos
-
-### Exemplos:
-
-- 
+- 002 - Encapsulamento
+- 003 - Operações (Métodos Mágicos)
+- 004 - Relacionamento entre objetos
+- 005 - Herança e Polimorfismo
+- 006 - Membros de uma classe
+- 007 - Fundamentos da abstração
+- 008 - Contratos com interface
+- 009 - Traits
 
 ### Credits
 
